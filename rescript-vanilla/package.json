@@ -1,0 +1,14 @@
+{
+  "name": "rescript-vanilla",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "rescript:build": "rescript",
+    "rescript:start": "rescript build -w",
+    "rescript:clean": "rescript clean"
+  },
+  "dependencies": {
+    "rescript": "^10.1.3"
+  }
+}
