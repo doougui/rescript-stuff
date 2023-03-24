@@ -52,14 +52,19 @@ let douglas = User({
   age: 20
 })
 
-let fn = (person: person) => {
+// pattern matching and named arguments
+let greet = (~person: person, ~isSpecial=false, ()) => {
   switch (person) {
+    | User({ name: "Douglas" }) if isSpecial => `Hello, Douglinhas, você é especial com if 🌈`
+    | User({ name: "Douglas" }) when isSpecial => `Hello, Douglinhas, você é especial com when 🌈`
     | User({ name: "Douglas" }) => `Hello, Douglinhas`
     | User({ name }) => `Hello, ${name}`
     | Admin(name) => `Hello, ${name}`
     | Person({ name }) => `Hello, ${name}`
   }
 }
+
+let msg = greet(~person=douglas, ())
 
 // polyvariant
 // type role = [#admin | #user | #masteradmin]
@@ -75,3 +80,14 @@ let hello = (role) => {
 }
 
 let _ = hello(myProfileRole)
+
+let sumX = (str, ~isSpecial) => isSpecial ? `${str}-special` : `${str}-non-special`
+let sumY = (str) => `${str}-y`
+let sumZ = (str) => `${str}-z`
+
+// Data-first pipe operator
+
+let str = str
+  ->sumX(~isSpecial=true)
+  ->sumY
+  ->sumZ
