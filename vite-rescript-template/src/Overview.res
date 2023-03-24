@@ -3,7 +3,8 @@ let valueFloat = 12.0
 
 let res = valueFloat->Belt.Float.toInt + valueInt
 
-let str = `1290 ${"Hello"} ${valueInt->Belt.Int.toString}`
+let concat = `1290 ${"Hello"} ${valueInt->Belt.Int.toString}`
+Js.log(concat)
 
 let isTrue = true
 
@@ -31,7 +32,7 @@ type profile<'source> = {
 
 // or type explicitly
 let userProfile: ProfileTypes.userProfile = {
-  name: "Gabriel",
+  name: Some("Gabriel"),
   age: 12
 }
 
@@ -48,19 +49,19 @@ type t;
 type person = | User(userProfile) | Admin(string) | Person(userProfile)
 
 let douglas = User({
-  name: "D",
+  name: None,
   age: 20
 })
 
 // pattern matching and named arguments
 let greet = (~person: person, ~isSpecial=false, ()) => {
   switch (person) {
-    | User({ name: "Douglas" }) if isSpecial => `Hello, Douglinhas, você é especial com if 🌈`
-    | User({ name: "Douglas" }) when isSpecial => `Hello, Douglinhas, você é especial com when 🌈`
-    | User({ name: "Douglas" }) => `Hello, Douglinhas`
-    | User({ name }) => `Hello, ${name}`
+    | User({ name: Some("Douglas") }) if isSpecial => `Hello, Douglinhas, você é especial com if 🌈`
+    | User({ name: Some("Douglas") }) when isSpecial => `Hello, Douglinhas, você é especial com when 🌈`
+    | User({ name: Some("Douglas") }) => `Hello, Douglinhas`
+    | User({ name }) => `Hello, ${switch name { | None => "-" | Some(v) => v }}`
     | Admin(name) => `Hello, ${name}`
-    | Person({ name }) => `Hello, ${name}`
+    | Person({ name }) => `Hello, ${switch name { | None => "-" | Some(v) => v }}`
   }
 }
 
@@ -70,7 +71,7 @@ let msg = greet(~person=douglas, ())
 // type role = [#admin | #user | #masteradmin]
 let myProfileRole = #admin
 let myProfileUserRole = #user
-let otherRole = #admin({ name: "ADMIN", age: 12 })
+let otherRole = #admin({ name: Some("ADMIN"), age: 12 })
 
 let hello = (role) => {
   switch (role) {
@@ -87,7 +88,20 @@ let sumZ = (str) => `${str}-z`
 
 // Data-first pipe operator
 
-let str = str
+let str = "Douglas"
   ->sumX(~isSpecial=true)
   ->sumY
   ->sumZ
+
+let anotherRes = str->Js.String2.includes("something")
+
+let greet2 = (~person: person, coords) => {
+  switch (person, coords) {
+    | (User({ name: Some("Douglas") }), (30, 40)) => `Hello, desgraça`
+    | (User({ name }), (20, 20)) => `Hello, ${switch name { | None => "-" | Some(v) => v }}`
+    | (Admin(name), (10, 10)) => `Hello, ${name}`
+    | (Person({ name }), (50, 50)) => `Hello, ${switch name { | None => "-" | Some(v) => v }}`
+    // catch-all
+    | _ => `Hello, putinha`
+  }
+}

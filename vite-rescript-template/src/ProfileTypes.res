@@ -1,4 +1,4 @@
 type userProfile = {
-  name: string,
+  name: option<string>,
   age: int,
 }
