@@ -1,1 +1,2 @@
-let sum = (a, b) => a + b
+module Sum = Math_Sum
+module Multiply = Math_Multiply

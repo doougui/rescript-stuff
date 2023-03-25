@@ -1,17 +1,7 @@
-let result = Math.sum(1, 2)
-Js.log(result)
+Js.log(Math.Sum.calc(1, 2))
 
-// import everything from Math2 so we don't have to use Math2.subtract
-open Math2
-Js.log(subtract(2, 1))
+let user: User.user = { name: "Douglas", age: 20 }
+let profile: Profile.profile = { name: "Doougui", email: "douglaspigoulart@gmail.com" }
 
-// alias
-module MathTwo = Math2
-Js.log(MathTwo.subtract(5, 2))
-
-// modules inside modules
-Js.log(Math3.Sum.calc(10, 20))
-Js.log(Math3.Subtract.calc(20, 5))
-
-let { calc: sum } = module(Math3.Sum)
-Js.log(sum(8, 3))
+Js.log(User.sayHello(user))
+Js.log(Profile.sayHello(profile))
