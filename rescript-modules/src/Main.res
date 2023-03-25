@@ -1,7 +1,26 @@
-Js.log(Math.Sum.calc(1, 2))
+// Module types
+module type SumInterface = {
+  let sum: (int, int) => int
+}
 
-let user: User.user = { name: "Douglas", age: 20 }
-let profile: Profile.profile = { name: "Doougui", email: "douglaspigoulart@gmail.com" }
+module Sum: SumInterface = {
+  let sum = (a, b) => a + b
+}
 
-Js.log(User.sayHello(user))
-Js.log(Profile.sayHello(profile))
+// Module functors
+module type MultiplyInterface = {
+  type t
+  let calc: (t, t) => t
+}
+
+module CreateMultiply = (M: MultiplyInterface) => {
+  type t = M.t
+  let calc = M.calc
+}
+
+module MultiplyFloat = CreateMultiply({
+  type t = float
+  let calc = (a, b) => a *. b
+})
+
+Js.log(MultiplyFloat.calc(3.0, 2.0))
