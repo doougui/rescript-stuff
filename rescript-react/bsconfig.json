@@ -9,10 +9,10 @@
   "package-specs": [
     {
       "module": "es6",
-      "in-source": true
+      "in-source": false
     }
   ],
   "reason": { "react-jsx": 3 },
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react"]
+  "bs-dependencies": ["@rescript/react", "bs-css", "bs-css-emotion"]
 }

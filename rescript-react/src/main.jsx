@@ -1,2 +1,2 @@
 import "./main.css"
-import "./Main.bs"
+import "../lib/es6/src/Main.bs"
