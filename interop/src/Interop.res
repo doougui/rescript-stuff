@@ -1,17 +1,17 @@
-let str = "string"
-let num = 1
-let float = 1.0
-let boolean = true
+@module("./JsInterop")
+external magicNumber: int = "magicNumber";
 
-type person = {
-  name: string
+@module("./JsInterop")
+external magicArray: array<option<int>> = "magicArray";
+
+type magicObj = {
+  a: int,
+  b: int,
+  c: int,
 }
 
-let obj: person = {
-  name: "Douglas"
-}
+@module("./JsInterop")
+external magicObject: magicObj = "magicObject";
 
-type name = option<string>
-
-let someName: name = Some("Gabriel")
-let anotherName: name = None;
+@module("./JsInterop")
+external magicMaybeString: Js.Null.t<string> = "magicMaybeString";
