@@ -32,5 +32,6 @@ let make = () => {
     <p>{
       Js.Date.make()->DateFns.format("dd/MM/yyyy")->React.string
     }</p>
+    <MyComponent name="Douglas" _type=#user />
   </div>
 }
