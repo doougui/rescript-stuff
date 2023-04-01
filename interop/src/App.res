@@ -21,5 +21,8 @@ let make = () => {
     <p>
       {Interop.magicFunction(1.0, 2.0)->Belt.Float.toString->React.string}
     </p>
+    <p>{
+      Js.Date.make()->DateFns.format("dd/MM/yyyy")->React.string
+    }</p>
   </div>
 }
