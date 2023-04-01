@@ -9,3 +9,8 @@ export const magicObject = {
 };
 
 export const magicMaybeString = null;
+
+export const magicFunction = (a, b) => a + b;
+export const magicCallback = (cb) => {
+  setTimeout(() => cb(null, "hello"), 1000);
+}
