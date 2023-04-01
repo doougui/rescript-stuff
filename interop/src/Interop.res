@@ -36,3 +36,20 @@ let magicCallback = (cb) => {
     }
   })
 }
+
+type window;
+
+@val
+external window : window = "window"
+
+@send
+external alert : (window, string) => unit = "alert"
+
+@module("./JsInterop")
+external magicLog : array<'a> => unit = "magicLog"
+
+let magicRaw : string => unit = %raw(`
+  function(msg) {
+    window.alert(msg)
+  }
+`)

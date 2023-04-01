@@ -14,3 +14,7 @@ export const magicFunction = (a, b) => a + b;
 export const magicCallback = (cb) => {
   setTimeout(() => cb(null, "hello"), 1000);
 }
+
+export const magicLog = (args) => {
+  console.log(...args);
+}
