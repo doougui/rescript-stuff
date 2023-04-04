@@ -1,3 +1,4 @@
+@genType
 @react.component
 let make = (~name, ~_type: option<[#user | #admin]>=?) => {
   <div>
